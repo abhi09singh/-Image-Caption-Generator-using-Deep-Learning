@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Caption Generator</title>
+    <style>
+               body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://img.freepik.com/free-vector/gradient-network-connection-background_23-2148865393.jpg?w=996&t=st=1693030745~exp=1693031345~hmac=3c469519078861130d95995f3c674fcfb345d45f844dea909c978e3340877cc6'); /* Replace with your background image path */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input[type="file"] {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        h2 {
+            margin-top: 20px;
+            color: #007bff;
+        }
+        p {
+            margin-top: 10px;
+        }
+        .uploaded-image {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        var loadFile = function(event) {
+            var image = document.getElementById('output');
+            image.src = URL.createObjectURL(event.target.files[0]);
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Image Caption Generator</h1>
+        
+        <form action="/" method="post" enctype="multipart/form-data">
+            <!-- Add the file input and label for image upload here -->
+            <p>
+                <input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)" style="display: none;">
+                <label for="file" style="cursor: pointer;">Upload Image</label>
+            </p>
+            
+            <input type="submit" value="Generate Caption">
+        </form>
+        
+        <!-- Display the uploaded image preview -->
+        <p><img id="output" width="200" /></p>
+        
+        {% if caption %}
+        <div>
+            <h2>Generated Caption:</h2>
+            <b><p>{{ caption }}</p></b>
+        </div>
+        {% endif %}
+
+        {% if image_path %}
+        <img class="uploaded-image" src="{{ image_path }}" alt="Uploaded Image">
+        {% endif %}
+    </div>
+</body>
+</html>

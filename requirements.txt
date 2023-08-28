@@ -1,0 +1,10 @@
+Flask
+Pillow
+tensorflow
+numpy
+pandas
+joblib
+sklearn
+matplotlib
+tqdm
+h5py
